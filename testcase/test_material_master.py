@@ -6,6 +6,10 @@ class TestMaterialMaster:
         self.material_master = MaterialMaster()
 
     def test_mat_search(self):
+        """
+        物料主档：测试根据物料编码查询物料
+        :return:
+        """
         r = self.material_master.material_search_by_matCode()
         assert r["msg"] == "查询成功"
         assert r["success"] is True

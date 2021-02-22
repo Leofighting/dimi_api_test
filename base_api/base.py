@@ -13,6 +13,12 @@ class Base:
         self.s.headers["Token"] = self.get_token()
 
     def get_token(self, username=None, password=None):
+        """
+        获取用户登录 token
+        :param username: 用户名
+        :param password: 密码
+        :return: token
+        """
         if username is None:
             username = self.username
         if password is None:
