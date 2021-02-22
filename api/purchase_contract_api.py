@@ -24,12 +24,16 @@ class PurchaseContract(Base):
         合同明细查询：通过物料编码查询
         :return:
         """
-        purchase_contract_detail_url = self.ip + "/api/scm/auth/scm/scmPurchaseContractD/detailList.do"
+        purchase_contract_detail_url = (
+            self.ip + "/api/scm/auth/scm/scmPurchaseContractD/detailList.do"
+        )
         purchase_contract_detail_params = {
             "page": 1,
             "pageSize": 50,
             "skipWarn": "false",
-            "matCode": "14000100110002"
+            "matCode": "14000100110002",
         }
-        r = self.s.post(url=purchase_contract_detail_url, params=purchase_contract_detail_params)
+        r = self.s.post(
+            url=purchase_contract_detail_url, params=purchase_contract_detail_params
+        )
         return r.json()
