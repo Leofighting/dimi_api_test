@@ -20,10 +20,7 @@ class Base:
 
         login_url = self.ip + "/api/user/mis/login.do"
 
-        login_params = {
-            "username": username,
-            "password": password
-        }
+        login_params = {"username": username, "password": password}
 
         r = requests.post(url=login_url, params=login_params)
 

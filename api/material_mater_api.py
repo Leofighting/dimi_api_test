@@ -4,7 +4,7 @@ from base_api.base import Base
 
 
 class MaterialMaster(Base):
-    def mat_search(self):
+    def material_search_by_matCode(self):
         url = self.ip + "/api/scm/auth/np/npMatDetail/list.do"
         data = {
             "matStatus": "Effective",
@@ -13,7 +13,7 @@ class MaterialMaster(Base):
             "isWeigh": "N",
             "page": 1,
             "pageSize": 50,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.post(url=url, params=data)
