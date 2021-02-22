@@ -1,5 +1,3 @@
-import pytest
-
 from api.material_mater_api import MaterialMaster
 
 

@@ -6,12 +6,12 @@ from base_api.base import Base
 
 class Login(Base):
     def login_with_password(self):
-        url = self.ip + "/api/user/mis/login.do"
-        data = {
+        login_url = self.ip + "/api/user/mis/login.do"
+        login_params = {
             "username": self.username,
             "password": self.password
         }
-        r = requests.post(url=url, params=data)
+        r = requests.post(url=login_url, params=login_params)
 
         r_json = r.json()
         print(json.dumps(r_json, indent=2, ensure_ascii=False))

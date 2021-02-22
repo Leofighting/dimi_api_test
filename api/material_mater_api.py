@@ -5,7 +5,6 @@ from base_api.base import Base
 
 class MaterialMaster(Base):
     def mat_search(self):
-        s = requests.Session()
         url = self.ip + "/api/scm/auth/np/npMatDetail/list.do"
         data = {
             "matStatus": "Effective",
@@ -17,5 +16,5 @@ class MaterialMaster(Base):
             "skipWarn": "false"
         }
 
-        r = s.post(url=url, params=data)
+        r = self.s.post(url=url, params=data)
         return r.json()
