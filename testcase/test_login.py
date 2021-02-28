@@ -3,7 +3,7 @@ import allure
 from api.login import Login
 
 
-@allure.feature("登录模块")
+@allure.feature("测试登录模块")
 class TestLogin:
     def setup_class(self):
         self.login = Login()

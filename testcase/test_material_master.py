@@ -1,10 +1,14 @@
+import allure
+
 from api.material_mater_api import MaterialMaster
 
 
+@allure.feature("测试 物料主档")
 class TestMaterialMaster:
     def setup_class(self):
         self.material_master = MaterialMaster()
 
+    @allure.story("测试通过物料编码查询物料")
     def test_mat_search(self):
         """
         物料主档：测试根据物料编码查询物料
