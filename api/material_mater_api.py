@@ -33,7 +33,8 @@ class MaterialMaster(Base):
             "matStatus": "Effective",
             "detailType": "all",
             "matCode": matCode,
-            "isWeigh": "N",
+            "page": 1,
+            "pageSize": 50,
             "skipWarn": "false"
         }
 
@@ -43,4 +44,4 @@ class MaterialMaster(Base):
 
 if __name__ == '__main__':
     test = MaterialMaster()
-    print(test.material_search_by_matCode(" 140001  "))
+    print(test.material_search_by_matCode("140001"))
