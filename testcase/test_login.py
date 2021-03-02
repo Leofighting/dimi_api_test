@@ -1,4 +1,5 @@
 import allure
+import pytest
 
 from api.login import Login
 
