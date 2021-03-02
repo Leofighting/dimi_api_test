@@ -22,7 +22,7 @@ class TestMaterialMaster:
         assert len(r["data"]["list"]) > 0
 
     @allure.story("测试物料主档导出-通过物料编码查询")
-    @pytest.mark.parametrize("matCode", [" 140001  ", " 00100110 ", " 110014 ", "14000100110014"])
+    @pytest.mark.parametrize("matCode", [(" 140001  ", ), (" 00100110 ", ), (" 110014 ", ), ("14000100110014", )])
     def test_mat_export_by_matCode(self, matCode):
         """
         物料主档导出：根据物料编码

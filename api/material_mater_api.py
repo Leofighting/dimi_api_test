@@ -43,4 +43,4 @@ class MaterialMaster(Base):
 
 if __name__ == '__main__':
     test = MaterialMaster()
-    print(test.material_export_by_matCode())
+    print(test.material_search_by_matCode(" 140001  "))
