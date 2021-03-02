@@ -10,7 +10,7 @@ class TestMaterialMaster:
         self.material_master = MaterialMaster()
 
     @allure.story("测试通过物料编码查询物料")
-    @pytest.mark.parametrize("matCode", ["140001", "00100110", "110014", "14000100110014"])
+    @pytest.mark.parametrize("matCode", ["140001", "010011", "110014", "14000100110014"])
     def test_mat_search(self, matCode):
         """
         物料主档：测试根据物料编码查询物料
