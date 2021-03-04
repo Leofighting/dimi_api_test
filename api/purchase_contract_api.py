@@ -6,7 +6,6 @@ import json
 from base_api.base import Base
 from data.purchase_contract_data import (
     purchase_contract_file_path,
-    detailsJson,
     purchase_contract_submit_data,
     purchase_contract_submit_body,
     purchase_contract_save_body,
