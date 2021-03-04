@@ -7,7 +7,7 @@ from settings import IP_SIT, USERNAME, PASSWORD, IP_UAT
 class Base:
     def __init__(self):
         self.s = Session()
-        self.ip = IP_SIT
+        self.ip = IP_UAT
         self.username = USERNAME
         self.password = PASSWORD
         self.s.headers["Token"] = self.get_token()

@@ -1,3 +1,5 @@
+# 订单跟进模块相关的接口
+
 from base_api.base import Base
 
 
@@ -14,12 +16,12 @@ class OrderFollow(Base):
             "matCode": matCode,
             "page": 1,
             "pageSize": 50,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
         r = self.s.post(url=order_detail_url, params=order_detail_params)
         return r.json()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = OrderFollow()
     print(test.order_detail_search_by_matCode("10026"))

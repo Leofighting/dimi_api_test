@@ -26,7 +26,7 @@ class Login(Base):
         return r.json()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = Login()
     print(test.login_with_password())
     # test.login_with_token()

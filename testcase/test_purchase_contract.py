@@ -23,7 +23,9 @@ class TestPurchaseContract:
         assert len(r["data"]["list"]) > 0
 
     @allure.story("测试通过物料编码查询合同明细")
-    @pytest.mark.parametrize("matCode", ["140001", "00100110", "110014", "14000100110014"])
+    @pytest.mark.parametrize(
+        "matCode", ["140001", "00100110", "110014", "14000100110014"]
+    )
     def test_purchase_contract_detail_search(self, matCode):
         """
         合同明细查询：测试根据物料编码查询合同明细

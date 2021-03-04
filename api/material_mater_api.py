@@ -1,4 +1,4 @@
-import requests
+# 物料主档模块相关的接口
 
 from base_api.base import Base
 
@@ -35,13 +35,13 @@ class MaterialMaster(Base):
             "matCode": matCode,
             "page": 1,
             "pageSize": 50,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.post(url=url, params=data)
         return r.json()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = MaterialMaster()
     print(test.material_search_by_matCode("140001"))

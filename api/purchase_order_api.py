@@ -1,10 +1,12 @@
+# 采购订单模块相关的接口
+
 from base_api.base import Base
 
 
 class PurchaseOrder(Base):
     def purchase_order_search_by_supCode(self, supCode):
         """
-        采购合同查询：通过供应商编号查询
+        采购订单查询：通过供应商编号查询
         :return:
         """
         purchase_order_url = self.ip + "/api/scm/auth/scm/scmPoH/list.do"
