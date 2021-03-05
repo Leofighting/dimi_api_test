@@ -32,6 +32,11 @@ class PurchaseOrder(Base):
     #     return json.dumps(r.json(), indent=2, ensure_ascii=False)
 
     def purchase_order_submit(self, order_id):
+        """
+        提交采购订单
+        :param order_id:
+        :return: 
+        """
         url = self.ip + "/api/scm/auth/scm/scmPoH/approve.do"
         params = {
             "status": "Reviewed",
