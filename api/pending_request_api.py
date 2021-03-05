@@ -36,6 +36,4 @@ class PendingRequest(Base):
 
 if __name__ == "__main__":
     test = PendingRequest()
-    # result = test.search_purchase_apply_order_by_no("PR2103050010")["data"]["list"]
-    # print(json.dumps(result, ensure_ascii=False, indent=2))
     print(test.create_purchase_order("211-PR2103050013"))

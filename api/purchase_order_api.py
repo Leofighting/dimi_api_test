@@ -20,18 +20,28 @@ class PurchaseOrder(Base):
         r = self.s.post(url=purchase_order_url, params=purchase_order_params)
         return r.json()
 
-    def create_purchase_order(self):
-        """
-        生成采购订单
-        :return:
-        """
-        url = self.ip + "/api/scm/auth/scm/scmPoH/createScmPoHsByPendrequests.do"
-        body = {"detailJson": "[{'id':12940}]"}
+    # def create_purchase_order(self):
+    #     """
+    #     生成采购订单
+    #     :return:
+    #     """
+    #     url = self.ip + "/api/scm/auth/scm/scmPoH/createScmPoHsByPendrequests.do"
+    #     body = {"detailJson": "[{'id':12940}]"}
+    #
+    #     r = self.s.post(url=url, data=body)
+    #     return json.dumps(r.json(), indent=2, ensure_ascii=False)
 
-        r = self.s.post(url=url, data=body)
+    def purchase_order_submit(self, order_id):
+        url = self.ip + "/api/scm/auth/scm/scmPoH/approve.do"
+        params = {
+            "status": "Reviewed",
+            "ids": order_id,
+            "skipWarn": "false"
+        }
+        r = self.s.get(url=url, params=params)
         return json.dumps(r.json(), indent=2, ensure_ascii=False)
 
 
 if __name__ == "__main__":
     test = PurchaseOrder()
-    print(test.create_purchase_order())
+    print(test.purchase_order_submit(406))
