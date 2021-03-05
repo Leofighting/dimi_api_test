@@ -34,7 +34,7 @@ class PurchaseApply(Base):
         params = {
             "orderNo": purchase_apply_order_no,
             "pageSize": 50,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.get(url=url, params=params)
@@ -47,12 +47,16 @@ class PurchaseApply(Base):
         :param purchase_apply_order_no: 申购单号
         :return:
         """
-        init_detailsList = self.get_purchase_apply_detail(purchase_apply_order_no)["data"]["detailsList"]
+        init_detailsList = self.get_purchase_apply_detail(purchase_apply_order_no)[
+            "data"
+        ]["detailsList"]
 
         for detail in init_detailsList:
             detail["detailsStatus"] = "WaitPurchase"
 
-        init_detailsList_json = json.dumps(init_detailsList, ensure_ascii=False, indent=2)
+        init_detailsList_json = json.dumps(
+            init_detailsList, ensure_ascii=False, indent=2
+        )
         purchase_apply_submit_body = {"detailsJson": "{}".format(init_detailsList_json)}
 
         return purchase_apply_submit_body
@@ -68,8 +72,8 @@ class PurchaseApply(Base):
         body = self.get_purchase_apply_submit_body(purchase_apply_order_no)
         print(body)
         r = self.s.post(url=url, params=purchase_apply_submit_params, data=body)
-        return json.dumps(r.json(), indent=2, ensure_ascii=False)
-        # return r.json()
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
 
 
 if __name__ == "__main__":

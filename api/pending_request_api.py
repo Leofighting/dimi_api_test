@@ -12,23 +12,20 @@ class PendingRequest(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyH/waitList.do?"
-        params = {
-            "orderNo": order_no,
-            "detailsStatus": "WaitPurchase"
-        }
+        params = {"orderNo": order_no, "detailsStatus": "WaitPurchase"}
 
         r = self.s.post(url=url, params=params)
 
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
-    def create_purchase_order(self):
+    def create_purchase_order(self, order_no):
         """
         生成采购订单
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPoH/createScmPoHsByPendrequests.do"
-        detail = self.search_purchase_apply_order_by_no("PR2103050010")["data"]["list"]
+        detail = self.search_purchase_apply_order_by_no(order_no)["data"]["list"]
         detailJson = json.dumps(detail, ensure_ascii=False, indent=2)
         body = {"detailJson": "{}".format(detailJson)}
 
@@ -37,8 +34,8 @@ class PendingRequest(Base):
         return r.json()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     test = PendingRequest()
     # result = test.search_purchase_apply_order_by_no("PR2103050010")["data"]["list"]
     # print(json.dumps(result, ensure_ascii=False, indent=2))
-    print(test.create_purchase_order())
+    print(test.create_purchase_order("211-PR2103050013"))
