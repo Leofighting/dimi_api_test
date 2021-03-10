@@ -6,7 +6,6 @@ from data.purchase_apply_data import (
     purchase_apply_save_params,
     purchase_apply_body,
     purchase_apply_submit_params,
-    purchase_apply_submit_body,
 )
 
 
@@ -70,7 +69,6 @@ class PurchaseApply(Base):
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyH/saveOrUpdate.do"
         purchase_apply_submit_params.update(get_id_no)
         body = self.get_purchase_apply_submit_body(purchase_apply_order_no)
-        print(body)
         r = self.s.post(url=url, params=purchase_apply_submit_params, data=body)
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
