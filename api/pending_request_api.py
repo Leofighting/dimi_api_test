@@ -8,7 +8,7 @@ class PendingRequest(Base):
     def search_purchase_apply_order_by_no(self, order_no):
         """
         在待处理请求页面，通过申购单号查询已提交待审核的申购明细
-        :param order_no:
+        :param order_no:申购单号
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyH/waitList.do?"
@@ -22,9 +22,11 @@ class PendingRequest(Base):
     def create_purchase_order(self, order_no):
         """
         生成采购订单
+        order_no:申购单号
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPoH/createScmPoHsByPendrequests.do"
+        # 按申购单号查询对应申购明细
         detail = self.search_purchase_apply_order_by_no(order_no)["data"]["list"]
         detailJson = json.dumps(detail, ensure_ascii=False, indent=2)
         body = {"detailJson": "{}".format(detailJson)}
