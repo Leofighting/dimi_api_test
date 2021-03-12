@@ -74,9 +74,7 @@ class TestMaterialMaster:
 
     @allure.story("测试物料状态变更")
     @pytest.mark.parametrize(
-        "ids",
-        [79607, [79607, 79608], 71536],
-        ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
+        "ids", [79607, [79607, 79608], 71536], ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
     )
     def test_mat_status_change_from_effective_to_freeze(self, ids):
         """
@@ -93,9 +91,7 @@ class TestMaterialMaster:
 
     @allure.story("测试物料状态变更")
     @pytest.mark.parametrize(
-        "ids",
-        [71536, [71536, 68961]],
-        ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
+        "ids", [71536, [71536, 68961]], ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
     )
     def test_mat_status_change_from_effective_to_invalid(self, ids):
         """
@@ -112,9 +108,7 @@ class TestMaterialMaster:
 
     @allure.story("测试物料状态变更")
     @pytest.mark.parametrize(
-        "ids",
-        [79878, [79878, 73458]],
-        ids=("单个关联合同/有库存的物料", "多个关联合同/有库存的物料")
+        "ids", [79878, [79878, 73458]], ids=("单个关联合同/有库存的物料", "多个关联合同/有库存的物料")
     )
     def test_mat_status_change_from_effective_to_invalid(self, ids):
         """
@@ -131,9 +125,7 @@ class TestMaterialMaster:
 
     @allure.story("测试物料状态变更")
     @pytest.mark.parametrize(
-        "ids",
-        [71536, [71536, 68961]],
-        ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
+        "ids", [71536, [71536, 68961]], ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
     )
     def test_mat_status_change_from_invalid_to_effective(self, ids):
         """
@@ -150,9 +142,7 @@ class TestMaterialMaster:
 
     @allure.story("测试物料状态变更")
     @pytest.mark.parametrize(
-        "ids",
-        [79607, [79607, 79608], 71536],
-        ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
+        "ids", [79607, [79607, 79608], 71536], ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
     )
     def test_mat_status_change_from_freeze_to_effective(self, ids):
         """
@@ -164,6 +154,8 @@ class TestMaterialMaster:
         self.material_master.mat_status_change_to_effective(ids)
         # 修改物料状态为 冻结
         self.material_master.mat_status_change_from_effective_to_freeze(ids)
+        # 再次将物料状态变更为 有效
         r = self.material_master.mat_status_change_to_effective(ids)
+        # 断言
         assert r["msg"] == "处理状态成功"
         assert r["success"] is True

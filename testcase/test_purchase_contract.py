@@ -57,3 +57,19 @@ class TestPurchaseContract:
             r = self.purchase_contract.purchase_contract_remove(ids)
             assert r["msg"] == "删除成功"
             assert r["success"] is True
+
+    @allure.story("测试采购合同复制")
+    @pytest.mark.parametrize(
+        "contract_no",
+        ["PC210312008", "PC210304003", "PC210304001", "PC210207003", "PC210128001"],
+        ids=("状态-草稿", "状态-已提交待审核", "状态-有效", "状态-已归档", "状态-部分冻结"),
+    )
+    def test_purchase_contract_copy(self, contract_no):
+        """
+        测试采购合同复制
+        :param contract_no: 合同单号
+        :return:
+        """
+        r = self.purchase_contract.purchase_contract_copy(contract_no)
+        assert r["msg"] == "获取成功"
+        assert r["success"] is True

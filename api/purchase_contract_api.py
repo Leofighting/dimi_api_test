@@ -149,8 +149,22 @@ class PurchaseContract(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def purchase_contract_copy(self, contract_no):
+        """
+        采购合同复制
+        :param contract_no: 合同单号
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/copyContract.do"
+        params = {"contractNo": contract_no, "skipWarn": "false"}
+
+        r = self.s.post(url=url, params=params)
+
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PurchaseContract()
     # print(test.purchase_contract_export_by_no("PC2103"))
-    print(test.purchase_contract_save())
+    print(test.purchase_contract_copy("PC210312008"))
