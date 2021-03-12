@@ -34,3 +34,28 @@ class TestPurchaseContract:
         r = self.purchase_contract.purchase_contract_detail_search_by_matCode(matCode)
         assert r["code"] == 1
         assert len(r["data"]["list"]) > 0
+
+    @allure.story("测试通过单号查询后导出")
+    @pytest.mark.parametrize(
+        "contract_no", ["PC2103", "PC210303008"]
+    )
+    def test_purchase_contract_export_by_no(self, contract_no):
+        """
+        合同导出：测试根据单号查询后导出
+        :return:
+        """
+        r = self.purchase_contract.purchase_contract_export_by_no(contract_no)
+        assert r["code"] == 1
+        assert len(r["data"]["list"]) > 0
+
+    def test_purchase_contract_remove(self):
+        try:
+            ids = self.purchase_contract.purchase_contract_save()["data"]["id"]
+            r = self.purchase_contract.purchase_contract_remove(ids)
+            assert r["msg"] == "删除成功"
+            assert r["success"] is True
+        except:
+            ids = self.purchase_contract.purchase_contract_save()["data"]["id"]
+            r = self.purchase_contract.purchase_contract_remove(ids)
+            assert r["msg"] == "删除成功"
+            assert r["success"] is True

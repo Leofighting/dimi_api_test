@@ -124,7 +124,38 @@ class PurchaseContract(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def purchase_contract_export_by_no(self, contract_no):
+        """
+        采购合同导出：根据合同编号查询后导出
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/downloadList.do"
+        params = {
+            "contractNo": contract_no,
+            "skipWarn": "false"
+        }
+
+        r = self.s.post(url=url, params=params)
+        return r.json()
+
+    def purchase_contract_remove(self, ids):
+        """
+        采购合同批量删除
+        注：只能删除草稿状态下的合同
+        :param ids: 采购合同id
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/remove.do"
+        params = {
+            "ids": ids,
+            "skipWarn": "false"
+        }
+
+        r = self.s.get(url=url, params=params)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
 
 if __name__ == "__main__":
     test = PurchaseContract()
+    # print(test.purchase_contract_export_by_no("PC2103"))
     print(test.purchase_contract_save())
