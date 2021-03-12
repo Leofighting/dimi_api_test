@@ -119,24 +119,24 @@ class MaterialMaster(Base):
 
         return r.json()
 
-    def mat_status_change_from_freeze_to_effective(self, ids):
-        """
-        测试物料状态由冻结变为有效
-        前提条件：确保测试物料的状态为非有效
-        :param ids: 物料id
-        :return:
-        """
-        url = self.ip + "/api/scm/auth/np/npMatStatusLog/statusChange.do"
-        params = {
-            "status": "Effective",
-            "reason": "接口自动化测试-修改物料状态",
-            "ids": ids,
-            "skipWarn": "false",
-        }
-
-        r = self.s.get(url=url, params=params)
-
-        return r.json()
+    # def mat_status_change_from_freeze_to_effective(self, ids):
+    #     """
+    #     测试物料状态由冻结变为有效
+    #     前提条件：确保测试物料的状态为非有效
+    #     :param ids: 物料id
+    #     :return:
+    #     """
+    #     url = self.ip + "/api/scm/auth/np/npMatStatusLog/statusChange.do"
+    #     params = {
+    #         "status": "Effective",
+    #         "reason": "接口自动化测试-修改物料状态",
+    #         "ids": ids,
+    #         "skipWarn": "false",
+    #     }
+    #
+    #     r = self.s.get(url=url, params=params)
+    #
+    #     return r.json()
 
     def mat_status_change_from_effective_to_invalid(self, ids):
         """
@@ -158,10 +158,9 @@ class MaterialMaster(Base):
 
         return r.json()
 
-    def mat_status_change_from_invalid_to_effective(self, ids):
+    def mat_status_change_to_effective(self, ids):
         """
-        测试物料状态由无效变为有效
-        前提条件：该物料状态为无效
+        测试物料状态变为有效
         :param ids: 物料id
         :return:
         """
@@ -180,4 +179,5 @@ class MaterialMaster(Base):
 
 if __name__ == "__main__":
     test = MaterialMaster()
-    print(test.mat_status_change_from_invalid_to_effective(94755))
+    # 73458
+    print(test.mat_status_change_from_effective_to_invalid(73458))

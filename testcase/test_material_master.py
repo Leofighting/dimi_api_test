@@ -71,3 +71,99 @@ class TestMaterialMaster:
         assert r["code"] == 1
         assert r["msg"] == "下载任务已开始，请从下载列表查看进度及下载文件"
         assert r["success"] is True
+
+    @allure.story("测试物料状态变更")
+    @pytest.mark.parametrize(
+        "ids",
+        [79607, [79607, 79608], 71536],
+        ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
+    )
+    def test_mat_status_change_from_effective_to_freeze(self, ids):
+        """
+        测试物料状态变更：从有效变为冻结
+        :param ids: 物料id
+        :return:
+        """
+        # 先确保将物料变为有效
+        self.material_master.mat_status_change_to_effective(ids)
+        # 修改物料状态为 冻结
+        r = self.material_master.mat_status_change_from_effective_to_freeze(ids)
+        assert r["msg"] == "处理状态成功"
+        assert r["success"] is True
+
+    @allure.story("测试物料状态变更")
+    @pytest.mark.parametrize(
+        "ids",
+        [71536, [71536, 68961]],
+        ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
+    )
+    def test_mat_status_change_from_effective_to_invalid(self, ids):
+        """
+        测试物料状态变更：从有效变为无效（未关联合同且无库存的物料）
+        :param ids: 物料id
+        :return:
+        """
+        # 先确保将物料变为有效
+        self.material_master.mat_status_change_to_effective(ids)
+        # 修改物料状态为 无效
+        r = self.material_master.mat_status_change_from_effective_to_invalid(ids)
+        assert r["msg"] == "处理状态成功"
+        assert r["success"] is True
+
+    @allure.story("测试物料状态变更")
+    @pytest.mark.parametrize(
+        "ids",
+        [79878, [79878, 73458]],
+        ids=("单个关联合同/有库存的物料", "多个关联合同/有库存的物料")
+    )
+    def test_mat_status_change_from_effective_to_invalid(self, ids):
+        """
+        测试物料状态变更：从有效变为无效（已关联合同/有库存的物料）
+        :param ids: 物料id
+        :return:
+        """
+        # 先确保将物料变为有效
+        self.material_master.mat_status_change_to_effective(ids)
+        # 修改物料状态为 无效
+        r = self.material_master.mat_status_change_from_effective_to_invalid(ids)
+        assert "不允许变更状态" in r["data"][0]["checkMsg"]
+        assert r["msg"] == "参数校验异常"
+
+    @allure.story("测试物料状态变更")
+    @pytest.mark.parametrize(
+        "ids",
+        [71536, [71536, 68961]],
+        ids=("单个未关联合同且无库存的物料", "多个未关联合同且无库存的物料")
+    )
+    def test_mat_status_change_from_invalid_to_effective(self, ids):
+        """
+        测试物料状态变更：从有效变为无效（未关联合同且无库存的物料）
+        :param ids: 物料id
+        :return:
+        """
+        # 先确保将物料变为无效
+        self.material_master.mat_status_change_from_effective_to_invalid(ids)
+        # 修改物料状态为 无效
+        r = self.material_master.mat_status_change_to_effective(ids)
+        assert r["msg"] == "处理状态成功"
+        assert r["success"] is True
+
+    @allure.story("测试物料状态变更")
+    @pytest.mark.parametrize(
+        "ids",
+        [79607, [79607, 79608], 71536],
+        ids=("关联合同的物料", "多个物料", "未关联合同且无库存的物料")
+    )
+    def test_mat_status_change_from_freeze_to_effective(self, ids):
+        """
+        测试物料状态变更：从冻结变为有效
+        :param ids: 物料id
+        :return:
+        """
+        # 先确保将物料变为有效
+        self.material_master.mat_status_change_to_effective(ids)
+        # 修改物料状态为 冻结
+        self.material_master.mat_status_change_from_effective_to_freeze(ids)
+        r = self.material_master.mat_status_change_to_effective(ids)
+        assert r["msg"] == "处理状态成功"
+        assert r["success"] is True
