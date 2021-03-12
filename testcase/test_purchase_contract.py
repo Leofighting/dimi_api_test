@@ -36,9 +36,7 @@ class TestPurchaseContract:
         assert len(r["data"]["list"]) > 0
 
     @allure.story("测试通过单号查询后导出")
-    @pytest.mark.parametrize(
-        "contract_no", ["PC2103", "PC210303008"]
-    )
+    @pytest.mark.parametrize("contract_no", ["PC2103", "PC210303008"])
     def test_purchase_contract_export_by_no(self, contract_no):
         """
         合同导出：测试根据单号查询后导出

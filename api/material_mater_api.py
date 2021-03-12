@@ -112,7 +112,7 @@ class MaterialMaster(Base):
             "status": "Freeze",
             "reason": "接口自动化测试-修改物料状态",
             "ids": ids,
-            "skipWarn": "true"
+            "skipWarn": "true",
         }
 
         r = self.s.get(url=url, params=params)
@@ -131,7 +131,7 @@ class MaterialMaster(Base):
             "status": "Effective",
             "reason": "接口自动化测试-修改物料状态",
             "ids": ids,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.get(url=url, params=params)
@@ -151,7 +151,7 @@ class MaterialMaster(Base):
             "status": "Invalid",
             "reason": "接口自动化测试-修改物料状态",
             "ids": ids,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.get(url=url, params=params)
@@ -170,7 +170,7 @@ class MaterialMaster(Base):
             "status": "Effective",
             "reason": "接口自动化测试-修改物料状态",
             "ids": ids,
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.get(url=url, params=params)

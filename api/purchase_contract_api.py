@@ -130,10 +130,7 @@ class PurchaseContract(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/downloadList.do"
-        params = {
-            "contractNo": contract_no,
-            "skipWarn": "false"
-        }
+        params = {"contractNo": contract_no, "skipWarn": "false"}
 
         r = self.s.post(url=url, params=params)
         return r.json()
@@ -146,14 +143,12 @@ class PurchaseContract(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/remove.do"
-        params = {
-            "ids": ids,
-            "skipWarn": "false"
-        }
+        params = {"ids": ids, "skipWarn": "false"}
 
         r = self.s.get(url=url, params=params)
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
+
 
 if __name__ == "__main__":
     test = PurchaseContract()
