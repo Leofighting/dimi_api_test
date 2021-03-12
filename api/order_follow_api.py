@@ -4,7 +4,7 @@ from base_api.base import Base
 
 
 class OrderFollow(Base):
-    def order_detail_search_by_matCode(self, matCode):
+    def order_detail_search_by_matCode(self, mat_code):
         """
         订单明细：根据物料编码查询
         :return:
@@ -13,7 +13,7 @@ class OrderFollow(Base):
         order_detail_params = {
             "sdOrderDayStart": "2020-11-30",
             "sdOrderDayEnd": "2021-03-02",
-            "matCode": matCode,
+            "matCode": mat_code,
             "page": 1,
             "pageSize": 50,
             "skipWarn": "false",

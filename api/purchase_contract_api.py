@@ -14,7 +14,7 @@ from data.purchase_contract_data import (
 
 
 class PurchaseContract(Base):
-    def purchase_contract_search_by_no(self, contractNo):
+    def purchase_contract_search_by_no(self, contract_no):
         """
         采购合同查询：通过合同单号
         :return:
@@ -23,7 +23,7 @@ class PurchaseContract(Base):
             self.ip + "/api/scm/auth/scm/scmPurchaseContractH/list.do"
         )
         purchase_contract_params = {
-            "contractNo": contractNo,
+            "contractNo": contract_no,
             "page": 1,
             "pageSize": 50,
             "skipWarn": "false",
@@ -31,7 +31,7 @@ class PurchaseContract(Base):
         r = self.s.post(url=purchase_contract_url, params=purchase_contract_params)
         return r.json()
 
-    def purchase_contract_detail_search_by_matCode(self, matCode):
+    def purchase_contract_detail_search_by_matCode(self, mat_code):
         """
         合同明细查询：通过物料编码查询
         :return:
@@ -43,7 +43,7 @@ class PurchaseContract(Base):
             "page": 1,
             "pageSize": 50,
             "skipWarn": "false",
-            "matCode": matCode,
+            "matCode": mat_code,
         }
         r = self.s.post(
             url=purchase_contract_detail_url, params=purchase_contract_detail_params

@@ -10,9 +10,9 @@ class TestOrderFollow:
         self.order_follower = OrderFollow()
 
     @allure.story("测试 通过物料编码查询发货单")
-    @pytest.mark.parametrize("matCode", ["146006", "60001", "10026", "14600600010026"])
-    def test_order_detail_search_by_matCode(self, matCode):
-        r = self.order_follower.order_detail_search_by_matCode(matCode)
+    @pytest.mark.parametrize("mat_code", ["146006", "60001", "10026", "14600600010026"])
+    def test_order_detail_search_by_matCode(self, mat_code):
+        r = self.order_follower.order_detail_search_by_matCode(mat_code)
         assert r["msg"] == "查询成功"
         assert r["success"] is True
         assert len(r["data"]["list"]) > 0
