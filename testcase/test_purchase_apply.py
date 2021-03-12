@@ -59,4 +59,3 @@ class TestPurchaseApply:
         assert r["success"] is True
         assert r["data"]["orderNo"] is not None
         assert r["data"]["status"] == "WaitPurchase"
-

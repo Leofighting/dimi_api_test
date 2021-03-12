@@ -29,7 +29,8 @@ class PurchaseOrder(Base):
         url = self.ip + "/api/scm/auth/scm/scmPoH/approve.do"
         params = {"status": "Reviewed", "ids": order_id, "skipWarn": "false"}
         r = self.s.get(url=url, params=params)
-        return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
 
 
 if __name__ == "__main__":
