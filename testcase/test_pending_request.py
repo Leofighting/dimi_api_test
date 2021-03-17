@@ -69,3 +69,12 @@ class TestPendingRequest:
         r = self.pending_request.synchronize()
         assert r["msg"] == "同步更新申购单红、绿、蓝灯状态成功"
         assert r["success"] is True
+
+    def test_purchase_apply_close(self):
+        """
+        测试采购关闭功能
+        :return:
+        """
+        r = self.pending_request.purchase_apply_close()
+        assert r["msg"] == "关闭成功"
+        assert r["success"] is True

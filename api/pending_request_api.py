@@ -126,7 +126,26 @@ class PendingRequest(Base):
         r = self.s.post(url=url)
         return r.json()
 
+    def purchase_apply_close(self):
+        """
+        采购关闭
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApply/close"
+        # 搜索申购明细
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][
+            get_randint_from_0_to_9()
+        ]
+        mat_id = mat_list["id"]
+        print(mat_list["orderNo"])
+
+        params = {"ids": mat_id, "closedMessage": "接口自动化测试-采购关闭", "skipWarn": "false"}
+
+        r = self.s.get(url=url, params=params)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.synchronize())
+    print(test.purchase_apply_close())
