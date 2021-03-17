@@ -33,3 +33,12 @@ class TestPendingRequest:
         assert r["msg"] == "保存成功"
         assert r["success"] is True
         assert r["data"][0]["poCode"] is not None
+
+    def test_change_to_old_material(self):
+        """
+        测试指定旧物料
+        :return:
+        """
+        r = self.pending_request.change_to_old_material()
+        assert r["msg"] == "保存成功"
+        assert r["success"] is True

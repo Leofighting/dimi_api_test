@@ -2,6 +2,7 @@
 import json
 
 from base_api.base import Base
+from utils.get_randint import get_randint_from_0_to_10
 
 
 class PendingRequest(Base):
@@ -35,7 +36,28 @@ class PendingRequest(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def change_to_old_material(self):
+        """
+        指定旧物料
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyB/update.do"
+        # 提交申购单
+        mat_id = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_10()]["id"]
+        params = {
+            "id": mat_id,
+            "matCode": "14201600010010",
+            "supCode": "0101353",
+            "supName": "广东大华轴承有限公司",
+            "skipWarn": "false"
+        }
+
+        r = self.s.post(url=url, params=params)
+
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.create_purchase_order("211-PR2103170001"))
+    print(test.change_to_old_material())
