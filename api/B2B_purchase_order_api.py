@@ -48,10 +48,26 @@ class B2BPurchaseOrder(Base):
         }
 
         r = self.s.post(url=url, params=params)
-        return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
+    def get_ids(self, order_no):
+        """
+        获取采购订单明细id，用于订单确认
+        :param order_no: 采购订单号
+        :return:
+        """
+        purchase_data_list = self.purchase_order_search_by_no(order_no)["data"]["list"]
+
+        ids = []
+        for purchase_list in purchase_data_list:
+            ids.append(purchase_list["id"])
+
+        return ids
 
 
 if __name__ == "__main__":
     test = B2BPurchaseOrder()
-    # print(test.purchase_order_search_by_no("PO2103050005"))
-    print(test.receive_purchase_order("1096"))
+    # print(test.purchase_order_search_by_no("PO"))
+    # print(test.receive_purchase_order("1096"))
+    print(test.get_ids("PO2010260003"))

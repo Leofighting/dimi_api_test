@@ -38,4 +38,4 @@ class PendingRequest(Base):
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.create_purchase_order("211-PR2103050017"))
+    print(test.create_purchase_order("211-PR2103170001"))
