@@ -42,3 +42,12 @@ class TestPendingRequest:
         r = self.pending_request.change_to_old_material()
         assert r["msg"] == "保存成功"
         assert r["success"] is True
+
+    def test_update_supplier(self):
+        """
+        测试修改供应商
+        :return:
+        """
+        r = self.pending_request.update_supplier()
+        assert r["msg"] == "修改成功"
+        assert r["success"] is True

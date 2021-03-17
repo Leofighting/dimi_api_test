@@ -2,7 +2,7 @@
 import json
 
 from base_api.base import Base
-from utils.get_randint import get_randint_from_0_to_10
+from utils.get_randint import get_randint_from_0_to_9
 
 
 class PendingRequest(Base):
@@ -42,8 +42,10 @@ class PendingRequest(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyB/update.do"
-        # 提交申购单
-        mat_id = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_10()]["id"]
+        # 搜索申购明细
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_9()]
+        # 获取申购明细的id
+        mat_id = mat_list["id"]
         params = {
             "id": mat_id,
             "matCode": "14201600010010",
@@ -57,7 +59,29 @@ class PendingRequest(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def update_supplier(self):
+        """
+        修改供应商
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApply/updateSup.do?"
+        # 搜索申购明细
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_9()]
+        # 获取申购明细的id
+        mat_id = mat_list["id"]
+        params = {
+            "ids": mat_id,
+            "supCode": "0101838",
+            "supName": "佛山市班本贸易有限公司",
+            "skipWarn": "false"
+        }
+
+        r = self.s.post(url=url, params=params)
+
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.change_to_old_material())
+    print(test.update_supplier())
