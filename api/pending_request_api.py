@@ -169,10 +169,7 @@ class PendingRequest(Base):
             get_randint_from_0_to_9()
         ]
         mat_id = mat_list["id"]
-        params = {
-            "ids": mat_id,
-            "skipWarn": "false"
-        }
+        params = {"ids": mat_id, "skipWarn": "false"}
 
         r = self.s.post(url=url, params=params)
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
