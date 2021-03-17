@@ -20,6 +20,20 @@ class PendingRequest(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def search_purchase_apply_order_by_status(self, status):
+        """
+        在待处理请求页面，通过申购状态查询已提交待审核的申购明细
+        :param status:申购状态
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyH/waitList.do?"
+        params = {"detailsStatus": status}
+
+        r = self.s.post(url=url, params=params)
+
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
     def create_purchase_order(self, order_no):
         """
         生成采购订单
@@ -145,7 +159,26 @@ class PendingRequest(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def restart(self):
+        """
+        测试重新启用功能
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyB/restart.do"
+        mat_list = self.search_purchase_apply_order_by_status("Closed")["data"]["list"][
+            get_randint_from_0_to_9()
+        ]
+        mat_id = mat_list["id"]
+        params = {
+            "ids": mat_id,
+            "skipWarn": "false"
+        }
+
+        r = self.s.post(url=url, params=params)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.purchase_apply_close())
+    print(test.restart())

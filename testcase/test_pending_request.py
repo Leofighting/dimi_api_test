@@ -78,3 +78,12 @@ class TestPendingRequest:
         r = self.pending_request.purchase_apply_close()
         assert r["msg"] == "关闭成功"
         assert r["success"] is True
+
+    def test_restart(self):
+        """
+        测试重新开启
+        :return:
+        """
+        r = self.pending_request.restart()
+        assert r["msg"] == "查询成功"
+        assert r["success"] is True
