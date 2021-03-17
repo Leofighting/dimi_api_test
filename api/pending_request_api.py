@@ -2,7 +2,7 @@
 import json
 
 from base_api.base import Base
-from utils.get_randint import get_randint_from_0_to_9
+from utils.get_randint import get_randint_from_0_to_9, get_randint_from_1_to_3
 
 
 class PendingRequest(Base):
@@ -77,7 +77,7 @@ class PendingRequest(Base):
             "ids": mat_id,
             "supCode": "0101838",
             "supName": "佛山市班本贸易有限公司",
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.post(url=url, params=params)
@@ -85,7 +85,48 @@ class PendingRequest(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
+    def update_remark(self):
+        """
+        修改购买备注
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyB/updateRemark.do"
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][
+            get_randint_from_0_to_9()
+        ]
+        # 获取申购明细的id
+        order_no = mat_list["orderNo"]
+        print(order_no)
+
+        body = {
+            "dataList": json.dumps(
+                [
+                    {
+                        "remark": "接口自动化测试",
+                        "orderNo": order_no,
+                        "itemSeq": get_randint_from_1_to_3(),
+                    }
+                ],
+                ensure_ascii=False,
+            ),
+            "skipWarn": "false",
+        }
+
+        r = self.s.post(url=url, data=body)
+
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+
+    def synchronize(self):
+        """
+        同步 标识灯
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/scm/syncTags"
+        r = self.s.post(url=url)
+        return r.json()
+
 
 if __name__ == "__main__":
     test = PendingRequest()
-    print(test.update_supplier())
+    print(test.synchronize())

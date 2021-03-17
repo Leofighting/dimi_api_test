@@ -51,3 +51,21 @@ class TestPendingRequest:
         r = self.pending_request.update_supplier()
         assert r["msg"] == "修改成功"
         assert r["success"] is True
+
+    def test_update_remark(self):
+        """
+        测试修改购买备注
+        :return:
+        """
+        r = self.pending_request.update_remark()
+        assert r["msg"] == "修改成功"
+        assert r["success"] is True
+
+    def test_synchronize(self):
+        """
+        测试 同步标识灯 功能
+        :return:
+        """
+        r = self.pending_request.synchronize()
+        assert r["msg"] == "同步更新申购单红、绿、蓝灯状态成功"
+        assert r["success"] is True
