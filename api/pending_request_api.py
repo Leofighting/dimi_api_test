@@ -43,7 +43,9 @@ class PendingRequest(Base):
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApplyB/update.do"
         # 搜索申购明细
-        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_9()]
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][
+            get_randint_from_0_to_9()
+        ]
         # 获取申购明细的id
         mat_id = mat_list["id"]
         params = {
@@ -51,7 +53,7 @@ class PendingRequest(Base):
             "matCode": "14201600010010",
             "supCode": "0101353",
             "supName": "广东大华轴承有限公司",
-            "skipWarn": "false"
+            "skipWarn": "false",
         }
 
         r = self.s.post(url=url, params=params)
@@ -66,7 +68,9 @@ class PendingRequest(Base):
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseApply/updateSup.do?"
         # 搜索申购明细
-        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][get_randint_from_0_to_9()]
+        mat_list = self.search_purchase_apply_order_by_no("")["data"]["list"][
+            get_randint_from_0_to_9()
+        ]
         # 获取申购明细的id
         mat_id = mat_list["id"]
         params = {

@@ -50,7 +50,10 @@ class TestB2BPurchaseOrder:
             purchase_apply_order_no
         )
         # 获取采购订单id，采购订单号
-        purchase_order_id, purchase_order_no = purchase_order["data"][0]["id"], purchase_order["data"][0]["poCode"]
+        purchase_order_id, purchase_order_no = (
+            purchase_order["data"][0]["id"],
+            purchase_order["data"][0]["poCode"],
+        )
         # 提交采购订单
         self.purchase_order.purchase_order_submit(purchase_order_id)
         # 获取采购订单明细 ids，用于订单确认
@@ -84,7 +87,10 @@ class TestB2BPurchaseOrder:
             purchase_apply_order_no
         )
         # 获取采购订单id，采购订单号
-        purchase_order_id, purchase_order_no = purchase_order["data"][0]["id"], purchase_order["data"][0]["poCode"]
+        purchase_order_id, purchase_order_no = (
+            purchase_order["data"][0]["id"],
+            purchase_order["data"][0]["poCode"],
+        )
         # 提交采购订单
         self.purchase_order.purchase_order_submit(purchase_order_id)
         # 获取采购订单明细 ids，用于订单退回
