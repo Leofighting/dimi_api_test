@@ -11,6 +11,7 @@ class TestPendingRequest:
         self.purchase_apply = PurchaseApply()
         self.pending_request = PendingRequest()
 
+    @allure.story("测试生成采购订单")
     def test_create_purchase_order(self):
         """
         测试生成采购订单
@@ -34,6 +35,7 @@ class TestPendingRequest:
         assert r["success"] is True
         assert r["data"][0]["poCode"] is not None
 
+    @allure.story("测试指定旧物料")
     def test_change_to_old_material(self):
         """
         测试指定旧物料
@@ -43,6 +45,7 @@ class TestPendingRequest:
         assert r["msg"] == "保存成功"
         assert r["success"] is True
 
+    @allure.story("测试修改供应商功能")
     def test_update_supplier(self):
         """
         测试修改供应商
@@ -52,6 +55,7 @@ class TestPendingRequest:
         assert r["msg"] == "修改成功"
         assert r["success"] is True
 
+    @allure.story("测试修改购买备注")
     def test_update_remark(self):
         """
         测试修改购买备注
@@ -61,6 +65,7 @@ class TestPendingRequest:
         assert r["msg"] == "修改成功"
         assert r["success"] is True
 
+    @allure.story("测试同步标识灯功能")
     def test_synchronize(self):
         """
         测试 同步标识灯 功能
@@ -70,6 +75,7 @@ class TestPendingRequest:
         assert r["msg"] == "同步更新申购单红、绿、蓝灯状态成功"
         assert r["success"] is True
 
+    @allure.story("测试采购关闭")
     def test_purchase_apply_close(self):
         """
         测试采购关闭功能
@@ -79,6 +85,7 @@ class TestPendingRequest:
         assert r["msg"] == "关闭成功"
         assert r["success"] is True
 
+    @allure.story("测试重新开启")
     def test_restart(self):
         """
         测试重新开启

@@ -25,6 +25,7 @@ class TestPurchaseOrder:
         assert r["success"] is True
         assert len(r["data"]["list"]) > 0
 
+    @allure.story("测试提交采购订单")
     def test_purchase_order_submit(self):
         """
         测试 提交采购订单

@@ -30,6 +30,7 @@ class TestPurchaseApply:
         assert r["msg"] == "复制成功"
         assert r["success"] is True
 
+    @allure.story("测试保存申购单")
     def test_purchase_apply_save(self):
         """
         测试保存申购单
@@ -40,6 +41,7 @@ class TestPurchaseApply:
         assert r["success"] is True
         assert r["data"]["orderNo"] is not None
 
+    @allure.story("测试提交申购单")
     def test_purchase_apply_submit(self):
         """
         测试提交申购单
