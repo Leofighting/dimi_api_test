@@ -9,7 +9,7 @@ class TestOrderFollow:
     def setup_class(self):
         self.order_follower = OrderFollow()
 
-    @allure.story("测试 通过物料编码查询发货单")
+    @allure.story("测试 通过物料编码查询采购订单")
     @pytest.mark.parametrize("mat_code", ["146006", "60001", "10026", "14600600010026"])
     def test_order_detail_search_by_matCode(self, mat_code):
         r = self.order_follower.order_detail_search_by_matCode(mat_code)

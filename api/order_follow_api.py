@@ -20,8 +20,8 @@ class OrderFollow(Base):
             "skipWarn": "false",
         }
         r = self.s.post(url=order_detail_url, params=order_detail_params)
-        # return r.json()
-        return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
 
     def order_detail_search_by_status(self, status):
         """
@@ -72,8 +72,6 @@ class OrderFollow(Base):
 
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
-
-
 
 
 if __name__ == "__main__":

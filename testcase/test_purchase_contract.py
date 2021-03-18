@@ -44,7 +44,8 @@ class TestPurchaseContract:
         """
         r = self.purchase_contract.purchase_contract_export_by_no(contract_no)
         assert r["code"] == 1
-        assert len(r["data"]["list"]) > 0
+        assert "下载任务已开始" in r["msg"]
+        assert r["success"] is True
 
     def test_purchase_contract_remove(self):
         try:

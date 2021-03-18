@@ -26,7 +26,6 @@ class TestPurchaseApply:
         :return:
         """
         r = self.purchase_apply.purchase_apply_copy(order_no)
-        print(r)
         assert r["msg"] == "复制成功"
         assert r["success"] is True
 

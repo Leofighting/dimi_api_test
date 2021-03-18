@@ -167,4 +167,4 @@ class PurchaseContract(Base):
 if __name__ == "__main__":
     test = PurchaseContract()
     # print(test.purchase_contract_export_by_no("PC2103"))
-    print(test.purchase_contract_copy("PC210312008"))
+    print(test.purchase_contract_export_by_no("PC2103"))
