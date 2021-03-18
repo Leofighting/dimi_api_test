@@ -46,7 +46,8 @@ class TestPurchaseApply:
         测试提交申购单
         :return:
         """
-        
+        # 考虑系统报错机制：{'code': 411, 'msg': '表单内容已经提交过,请刷新当前页面', 'success': False}
+        # 所以添加 try...except... 报错时，重新执行一次
         try:
             # 保存申购单，获取返回的响应信息
             purchase_apply_response = self.purchase_apply.purchase_apply_save()

@@ -48,6 +48,12 @@ class TestPurchaseContract:
         assert r["success"] is True
 
     def test_purchase_contract_remove(self):
+        """
+        采购合同批量删除
+        :return:
+        """
+        # 考虑系统报错机制：{'code': 411, 'msg': '表单内容已经提交过,请刷新当前页面', 'success': False}
+        # 所以添加 try...except... 报错时，重新执行一次
         try:
             ids = self.purchase_contract.purchase_contract_save()["data"]["id"]
             r = self.purchase_contract.purchase_contract_remove(ids)
