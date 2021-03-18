@@ -115,8 +115,10 @@ class PurchaseContract(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/updateContractStatus.do"
+        contract_no = self.purchase_contract_submit()["data"]["contractNo"]
+        print(contract_no)
         params = {
-            "contractNo": "PC210303014",
+            "contractNo": contract_no,
             "status": "Effective",
             "skipWarn": "false",
         }
@@ -167,4 +169,5 @@ class PurchaseContract(Base):
 if __name__ == "__main__":
     test = PurchaseContract()
     # print(test.purchase_contract_export_by_no("PC2103"))
-    print(test.purchase_contract_export_by_no("PC2103"))
+    # print(test.purchase_contract_export_by_no("PC2103"))
+    print(test.examination_passed())

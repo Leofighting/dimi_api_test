@@ -35,6 +35,57 @@ class TestPurchaseContract:
         assert r["code"] == 1
         assert len(r["data"]["list"]) > 0
 
+    @allure.story("测试保存采购合同，状态为草稿")
+    def test_purchase_contract_save(self):
+        """
+        采购合同保存：状态为草稿
+        :return:
+        """
+        try:
+            r = self.purchase_contract.purchase_contract_save()
+            assert r["msg"] == "保存成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Draft"
+        except:
+            r = self.purchase_contract.purchase_contract_save()
+            assert r["msg"] == "保存成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Draft"
+
+    @allure.story("测试提交采购合同，状态为已提交待审核")
+    def test_purchase_contract_submit(self):
+        """
+        采购合同提交：状态为已提交待审核
+        :return:
+        """
+        try:
+            r = self.purchase_contract.purchase_contract_submit()
+            assert r["msg"] == "保存成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Submit"
+        except:
+            r = self.purchase_contract.purchase_contract_submit()
+            assert r["msg"] == "保存成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Submit"
+
+    @allure.story("测试采购合同审核，状态为有效")
+    def test_purchase_contract_passed(self):
+        """
+        采购合同审核：状态为有效
+        :return:
+        """
+        try:
+            r = self.purchase_contract.examination_passed()
+            assert r["msg"] == "更新成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Effective"
+        except:
+            r = self.purchase_contract.examination_passed()
+            assert r["msg"] == "更新成功"
+            assert r["success"] is True
+            assert r["data"]["status"] == "Effective"
+
     @allure.story("测试通过单号查询后导出")
     @pytest.mark.parametrize("contract_no", ["PC2103", "PC210303008"])
     def test_purchase_contract_export_by_no(self, contract_no):
@@ -47,6 +98,7 @@ class TestPurchaseContract:
         assert "下载任务已开始" in r["msg"]
         assert r["success"] is True
 
+    @allure.story("测试采购合同批量删除")
     def test_purchase_contract_remove(self):
         """
         采购合同批量删除
