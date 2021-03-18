@@ -46,15 +46,24 @@ class TestPurchaseApply:
         测试提交申购单
         :return:
         """
-        # 保存申购单，获取返回的响应信息
-        purchase_apply_response = self.purchase_apply.purchase_apply_save()
-        print(purchase_apply_response)
-        # 获取申购单id，单号
-        purchase_apply_id, purchase_apply_order_no = (
-            purchase_apply_response["data"]["id"],
-            purchase_apply_response["data"]["orderNo"],
-        )
-        print(purchase_apply_id, purchase_apply_order_no)
+        
+        try:
+            # 保存申购单，获取返回的响应信息
+            purchase_apply_response = self.purchase_apply.purchase_apply_save()
+            # 获取申购单id，单号
+            purchase_apply_id, purchase_apply_order_no = (
+                purchase_apply_response["data"]["id"],
+                purchase_apply_response["data"]["orderNo"],
+            )
+        except:
+            # 保存申购单，获取返回的响应信息
+            purchase_apply_response = self.purchase_apply.purchase_apply_save()
+            # 获取申购单id，单号
+            purchase_apply_id, purchase_apply_order_no = (
+                purchase_apply_response["data"]["id"],
+                purchase_apply_response["data"]["orderNo"],
+            )
+
         r = self.purchase_apply.purchase_apply_submit(
             purchase_apply_id, purchase_apply_order_no
         )
