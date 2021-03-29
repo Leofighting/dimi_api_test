@@ -8,3 +8,7 @@ def get_today_date():
     """
     today_date = datetime.date.today()
     return today_date
+
+
+if __name__ == "__main__":
+    print(get_today_date(), type(get_today_date()))

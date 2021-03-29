@@ -55,7 +55,7 @@ class PurchaseContract(Base):
         采购合同：保存，状态为草稿
         :return:
         """
-        today = datetime.date.today()
+        # today = datetime.date.today()
         url = self.ip + "/api/scm/auth/scm/scmPurchaseContractH/saveOrUpdate.do"
         r = self.s.post(
             url=url,
@@ -70,7 +70,7 @@ class PurchaseContract(Base):
         采购合同：提交审核，状态为已提交待审核
         :return:
         """
-        today = datetime.date.today()
+        # today = datetime.date.today()
         purchase_contract = self.purchase_contract_save()
         contractNo = purchase_contract["data"]["contractNo"]
         poContractNo = purchase_contract["data"]["poContractNo"]
