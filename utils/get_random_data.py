@@ -54,6 +54,14 @@ class RandomTool:
         company_num = self.fake.random_number(18)
         return company_num
 
+    def create_car_license(self):
+        """
+        生成随机车牌号码
+        :return:
+        """
+        car_license = self.fake.license_plate()
+        return car_license
+
 
 # 实例化
 random_tool = RandomTool()
@@ -63,7 +71,8 @@ ADDRESS = random_tool.create_address()
 IDENTITY_NUMBER = random_tool.create_identity_number()
 COMPANY = random_tool.create_company()
 COMPANY_NUM_18 = random_tool.create_18_num()
+CAR_LICENSE = random_tool.create_car_license()
 
 
 if __name__ == "__main__":
-    print(COMPANY_NUM_18, type(COMPANY_NUM_18))
+    print(CAR_LICENSE, type(CAR_LICENSE))
