@@ -35,18 +35,18 @@ class TestSupplierProfile:
         assert r["success"] is True
         assert len(r["data"]["list"]) > 0
 
-    @allure.story("测试创建供应商")
-    def test_02_create_supplier(self):
-        """
-        测试创建供应商
-        :return:
-        """
-        r = self.supplier_profile.create_supplier()
-        assert r["msg"] == "保存成功"
-        assert r["success"] is True
+    # @allure.story("测试创建供应商")
+    # def test_create_supplier(self):
+    #     """
+    #     测试创建供应商
+    #     :return:
+    #     """
+    #     r = self.supplier_profile.create_supplier()
+    #     assert r["msg"] == "保存成功"
+    #     assert r["success"] is True
 
     @allure.story("测试作废供应商档案处理单据")
-    def test_01_invalid_supplier(self):
+    def test_invalid_supplier(self):
         """
         测试作废供应商档案处理单据
         :return:
