@@ -6,8 +6,6 @@ from data.supplier_profile_data import npSupplierJson, npSupplierInformJson
 
 
 class SupplierProfile(Base):
-    np_supplier_json = npSupplierJson
-    np_supplier_inform_json = npSupplierInformJson
 
     def supplier_search_by_sup_code(self, sup_code):
         """
@@ -55,10 +53,10 @@ class SupplierProfile(Base):
         url = self.ip + "/api/scm/auth/np/npSupplierBill/saveOrUpdateAll"
         body = {
             "npSupplierJson": json.dumps(
-                self.np_supplier_json, ensure_ascii=False, indent=2
+                npSupplierJson, ensure_ascii=False, indent=2
             ),
             "npSupplierInformJson": json.dumps(
-                self.np_supplier_inform_json, ensure_ascii=False, indent=2
+                npSupplierInformJson, ensure_ascii=False, indent=2
             ),
             "npSupplierUpJson": [],
             "npSupplierCustomJson": [],
