@@ -24,7 +24,7 @@ class TestSupplierProfile:
 
     @allure.story("测试通过供应商名称查询供应商")
     @pytest.mark.parametrize("sup_name", ["五金", "大华", "广东大华轴承有限公司"])
-    def test_supplier_search_by_sup_code(self, sup_name):
+    def test_supplier_search_by_sup_name(self, sup_name):
         """
         根据供应商名称查询
         :param sup_name:供应商名称
@@ -36,7 +36,7 @@ class TestSupplierProfile:
         assert len(r["data"]["list"]) > 0
 
     @allure.story("测试创建供应商")
-    def test_supplier_search_by_sup_code(self):
+    def test_create_supplier(self):
         """
         测试创建供应商
         :return:
@@ -46,7 +46,7 @@ class TestSupplierProfile:
         assert r["success"] is True
 
     @allure.story("测试作废供应商档案处理单据")
-    def test_supplier_search_by_sup_code(self):
+    def test_invalid_supplier(self):
         """
         测试作废供应商档案处理单据
         :return:
