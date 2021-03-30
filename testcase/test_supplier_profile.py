@@ -44,3 +44,13 @@ class TestSupplierProfile:
         r = self.supplier_profile.create_supplier()
         assert r["msg"] == "保存成功"
         assert r["success"] is True
+
+    @allure.story("测试作废供应商档案处理单据")
+    def test_supplier_search_by_sup_code(self):
+        """
+        测试作废供应商档案处理单据
+        :return:
+        """
+        r = self.supplier_profile.invalid_supplier()
+        assert r["msg"] == "作废成功"
+        assert r["success"] is True

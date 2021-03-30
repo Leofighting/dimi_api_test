@@ -6,6 +6,10 @@ from utils.get_random_data import CAR_LICENSE, NAME, PHONE
 
 class B2BSupplierDeliveryVehicle(Base):
     def create_supplier_delivery_vehicle(self):
+        """
+        创建车辆司机信息
+        :return:
+        """
         url = self.ip + "/api/b2b/auth/bd/bdSupplierDeliveryVehicle/saveOrUpdate.do?"
         params = {
             "status": "Effective",

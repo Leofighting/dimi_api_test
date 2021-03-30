@@ -53,8 +53,6 @@ class SupplierProfile(Base):
         :return:
         """
         url = self.ip + "/api/scm/auth/np/npSupplierBill/saveOrUpdateAll"
-        # params = {"skipWarn": "false"}
-        # json.dumps([], ensure_ascii=False, indent=2)
         body = {
             "npSupplierJson": json.dumps(
                 self.np_supplier_json, ensure_ascii=False, indent=2
@@ -73,47 +71,23 @@ class SupplierProfile(Base):
         # return json.dumps(r.json(), indent=2, ensure_ascii=False)
         return r.json()
 
-    # def pass_create_supplier(self):
-    #     """
-    #     审核通过
-    #     :return:
-    #     """
-    #     url = self.ip + "/api/scm/auth/np/npSupplierBill/pass.do"
-    #     supplier = self.create_supplier()
-    #     print("############")
-    #     print(supplier)
-    #     supplier_id = supplier["data"]["id"]
-    #     self.np_supplier_json["id"] = supplier_id
-    #     self.np_supplier_inform_json["id"] = supplier_id
-    #     print("########")
-    #     print(json.dumps(self.np_supplier_json, ensure_ascii=False, indent=2))
-    #     print("##########")
-    #     print(json.dumps(
-    #             self.np_supplier_inform_json, ensure_ascii=False, indent=2
-    #         ))
-    #     params = {
-    #         "id": supplier_id,
-    #         "version": 1
-    #     }
-    #     body = {
-    #         "npSupplierJson": json.dumps(self.np_supplier_json, ensure_ascii=False, indent=2),
-    #         "npSupplierInformJson": json.dumps(
-    #             self.np_supplier_inform_json, ensure_ascii=False, indent=2
-    #         ),
-    #         "npSupplierUpJson": [],
-    #         "npSupplierCustomJson": [],
-    #         "npSupplierProductJson": [],
-    #         "npSupplierEquiptJson": [],
-    #         "npSupplierAnnexJson": []
-    #     }
-    #
-    #     r = self.s.post(url=url, params=params, data=body)
-    #
-    #     return json.dumps(r.json(), indent=2, ensure_ascii=False)
+    def invalid_supplier(self):
+        """
+        作废供应商档案处理单据
+        :return:
+        """
+        url = self.ip + "/api/scm/auth/np/npSupplierBill/invalid.do"
+        supplier = self.create_supplier()["data"]["id"]
+        supplier_id = supplier
+        params = {"id": supplier_id, "invalidReason": "接口自动化测试", "skipWarn": "false"}
+
+        r = self.s.post(url=url, params=params)
+        # return json.dumps(r.json(), indent=2, ensure_ascii=False)
+        return r.json()
 
 
 if __name__ == "__main__":
     test = SupplierProfile()
     # print(test.supplier_search_by_sup_code("0001000"))
     # print(test.supplier_search_by_sup_name("大华"))
-    # print(test.pass_create_supplier())
+    print(test.invalid_supplier())
