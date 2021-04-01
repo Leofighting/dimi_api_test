@@ -6,7 +6,6 @@ from data.supplier_profile_data import npSupplierJson, npSupplierInformJson
 
 
 class SupplierProfile(Base):
-
     def supplier_search_by_sup_code(self, sup_code):
         """
         根据供应商编码查询
@@ -52,9 +51,7 @@ class SupplierProfile(Base):
         """
         url = self.ip + "/api/scm/auth/np/npSupplierBill/saveOrUpdateAll"
         body = {
-            "npSupplierJson": json.dumps(
-                npSupplierJson, ensure_ascii=False, indent=2
-            ),
+            "npSupplierJson": json.dumps(npSupplierJson, ensure_ascii=False, indent=2),
             "npSupplierInformJson": json.dumps(
                 npSupplierInformJson, ensure_ascii=False, indent=2
             ),

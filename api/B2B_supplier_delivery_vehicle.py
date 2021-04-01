@@ -16,7 +16,7 @@ class B2BSupplierDeliveryVehicle(Base):
             "licensePlateCode": car_no,
             "pageSize": 50,
             "skipWarn": "false",
-            "page": 1
+            "page": 1,
         }
 
         r = self.s.post(url=url, params=params)
@@ -34,7 +34,7 @@ class B2BSupplierDeliveryVehicle(Base):
             "driverName": driver_name,
             "pageSize": 50,
             "skipWarn": "false",
-            "page": 1
+            "page": 1,
         }
 
         r = self.s.post(url=url, params=params)
