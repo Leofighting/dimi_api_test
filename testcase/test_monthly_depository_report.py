@@ -13,7 +13,7 @@ class TestMonthlyDepositoryReport:
     def test_search_by_month(self, month):
         """
         测试 根据月份查询
-        :param month:
+        :param month:月份
         :return:
         """
         r = self.monthly_depository_report.search_by_month(month)

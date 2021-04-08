@@ -73,9 +73,7 @@ class SupplierProfile(Base):
         """
         url = self.ip + "/api/scm/auth/np/npSupplierBill/invalid.do"
         supplier = self.create_supplier()
-        print(supplier, type(supplier))
         supplier_id = supplier["data"]["id"]
-        print(supplier_id, type(supplier_id))
         params = {"id": supplier_id, "invalidReason": "接口自动化测试", "skipWarn": "false"}
 
         r = self.s.post(url=url, params=params)
